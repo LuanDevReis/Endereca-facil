@@ -1,0 +1,30 @@
+<section class="hero-card mb-4">
+  <div class="hero-copy">
+    <span class="section-label">Aplicação prática Angular 16</span>
+    <h2 class="display-6 fw-bold mt-3">Cadastre pessoas e encontre endereços pelo CEP</h2>
+    <p class="lead mb-4">Uma SPA simples para aprender componentes, rotas, services, injeção de dependência e requisições HTTP.</p>
+    <a routerLink="/cadastro" class="btn btn-primary btn-lg"><i class="bi bi-plus-lg me-2"></i>Começar cadastro</a>
+  </div>
+  <!-- <div class="hero-visual" aria-hidden="true"><i class="bi bi-geo-alt-fill"></i><span>CEP</span></div> -->
+</section>
+
+<div class="row g-4">
+  <div class="col-md-6">
+    <article class="feature-card h-100">
+      <div class="feature-icon"><i class="bi bi-person-plus"></i></div>
+      <h3 class="h5">Novo cadastro</h3>
+      <p>Informe os dados pessoais e use o CEP para preencher automaticamente o endereço.</p>
+      <a routerLink="/cadastro" class="card-link">Cadastrar uma pessoa <i class="bi bi-arrow-right"></i></a>
+    </article>
+  </div>
+  <div class="col-md-6">
+    <article class="feature-card h-100">
+      <div class="feature-icon feature-icon--green"><i class="bi bi-table"></i></div>
+      <h3 class="h5">Ver cadastros</h3>
+      <p>Consulte os registros guardados pelo service enquanto a aplicação estiver aberta.</p>
+      <a routerLink="/cadastros" class="card-link">Abrir a listagem <i class="bi bi-arrow-right"></i></a>
+    </article>
+  </div>
+</div>
+
+<div class="info-strip mt-4"><i class="bi bi-lightning-charge-fill"></i><span>Ao informar um CEP válido, o ViaCEP ajuda a preencher logradouro, bairro, cidade e UF.</span></div>

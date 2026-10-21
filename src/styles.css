@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+:root {
+  --brand-primary: #0d6efd;
+  --brand-navy: #102a43;
+  --surface-page: #f4f7fb;
+  --surface-card: #ffffff;
+  --text-primary: #172033;
+  --text-secondary: #667085;
+  --border-color: #e2e8f0;
+  --sidebar-width: 260px;
+  --header-height: 76px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 8px 24px rgba(15, 23, 42, .06);
+  --shadow-md: 0 18px 45px rgba(15, 23, 42, .14);
+}
+
+html, body { min-height: 100%; }
+body { margin: 0; color: var(--text-primary); background: var(--surface-page); font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif; }
+button, input { font: inherit; }
+.btn { border-radius: 10px; font-weight: 600; }
+.btn-primary { box-shadow: 0 8px 18px rgba(13, 110, 253, .18); }
+.form-control { border-color: #cbd5e1; border-radius: 9px; }
+.form-control:focus { border-color: #86b7fe; box-shadow: 0 0 0 .22rem rgba(13,110,253,.12); }
+:focus-visible { outline: 3px solid rgba(13,110,253,.35); outline-offset: 2px; }

@@ -1,0 +1,7 @@
+.topbar {
+  min-height: var(--header-height);
+  background: var(--surface-card);
+  border-bottom: 1px solid var(--border-color);
+}
+.eyebrow { color: var(--brand-primary); font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+h1 { color: var(--text-primary); font-weight: 700; }

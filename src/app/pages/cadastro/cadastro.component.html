@@ -1,0 +1,223 @@
+<div class="page-intro d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4">
+  <div>
+    <span class="section-label">Formulário</span>
+    <h2 class="h3 mt-2 mb-1">Novo cadastro</h2>
+    <p class="mb-0">Preencha os dados e consulte o endereço usando o CEP.</p>
+  </div>
+
+  <span class="required-note">
+    <span aria-hidden="true">*</span>
+    Campos obrigatórios
+  </span>
+</div>
+
+<form
+  #formulario="ngForm"
+  (ngSubmit)="salvar(formulario)"
+  novalidate
+>
+  <section class="form-card mb-4">
+    <div class="section-heading">
+      <span class="section-number">1</span>
+
+      <div>
+        <h3>Dados pessoais</h3>
+        <p>Informações de contato da pessoa.</p>
+      </div>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-12">
+        <label for="nome" class="form-label">Nome completo *</label>
+        <input
+          id="nome"
+          name="nome"
+          class="form-control"
+          [class.is-invalid]="nome.invalid && (nome.touched || formulario.submitted)"
+          [(ngModel)]="cadastro.nome"
+          #nome="ngModel"
+          required
+          autocomplete="name"
+        >
+        <div class="invalid-feedback">Informe o nome completo.</div>
+      </div>
+
+      <div class="col-md-7">
+        <label for="email" class="form-label">E-mail *</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          class="form-control"
+          [class.is-invalid]="email.invalid && (email.touched || formulario.submitted)"
+          [(ngModel)]="cadastro.email"
+          #email="ngModel"
+          required
+          email
+          autocomplete="email"
+        >
+        <div class="invalid-feedback">Informe um e-mail válido.</div>
+      </div>
+
+      <div class="col-md-5">
+        <label for="telefone" class="form-label">Telefone</label>
+        <input
+          id="telefone"
+          name="telefone"
+          class="form-control"
+          [(ngModel)]="cadastro.telefone"
+          autocomplete="tel"
+          placeholder="(00) 00000-0000"
+        >
+      </div>
+    </div>
+  </section>
+
+  <section class="form-card mb-4">
+    <div class="section-heading">
+      <span class="section-number">2</span>
+
+      <div>
+        <h3>Endereço</h3>
+        <p>Consulte o CEP e revise os campos preenchidos.</p>
+      </div>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-md-5 col-lg-4">
+        <label for="cep" class="form-label">CEP *</label>
+
+        <div class="input-group">
+          <input
+            id="cep"
+            name="cep"
+            class="form-control"
+            [class.is-invalid]="cep.invalid && (cep.touched || formulario.submitted)"
+            [(ngModel)]="cadastro.cep"
+            #cep="ngModel"
+            required
+            pattern="(?:\D*\d){8}\D*"
+            maxlength="9"
+            inputmode="numeric"
+            placeholder="00000000"
+            (ngModelChange)="limparEndereco()"
+          >
+
+          <button
+            class="btn btn-outline-primary"
+            type="button"
+            [disabled]="consultandoCep"
+            (click)="consultarCep()"
+          >
+            <span
+              *ngIf="consultandoCep"
+              class="spinner-border spinner-border-sm me-1"
+            ></span>
+            {{ consultandoCep ? 'Consultando' : 'Buscar CEP' }}
+          </button>
+
+          <div class="invalid-feedback">Informe exatamente 8 dígitos.</div>
+        </div>
+      </div>
+
+      <div class="col-12" *ngIf="mensagemCep">
+        <div class="cep-feedback" role="status">
+          <i class="bi bi-info-circle-fill" aria-hidden="true"></i>
+          {{ mensagemCep }}
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <label for="logradouro" class="form-label">Logradouro *</label>
+        <input
+          id="logradouro"
+          name="logradouro"
+          class="form-control"
+          [class.is-invalid]="logradouro.invalid && (logradouro.touched || formulario.submitted)"
+          [(ngModel)]="cadastro.logradouro"
+          #logradouro="ngModel"
+          required
+        >
+        <div class="invalid-feedback">Informe o logradouro.</div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="numero" class="form-label">Número *</label>
+        <input
+          id="numero"
+          name="numero"
+          class="form-control"
+          [class.is-invalid]="numero.invalid && (numero.touched || formulario.submitted)"
+          [(ngModel)]="cadastro.numero"
+          #numero="ngModel"
+          required
+        >
+        <div class="invalid-feedback">Informe o número.</div>
+      </div>
+
+      <div class="col-md-5">
+        <label for="complemento" class="form-label">Complemento</label>
+        <input
+          id="complemento"
+          name="complemento"
+          class="form-control"
+          [(ngModel)]="cadastro.complemento"
+        >
+      </div>
+
+      <div class="col-md-7">
+        <label for="bairro" class="form-label">Bairro *</label>
+        <input
+          id="bairro"
+          name="bairro"
+          class="form-control"
+          [class.is-invalid]="bairro.invalid && (bairro.touched || formulario.submitted)"
+          [(ngModel)]="cadastro.bairro"
+          #bairro="ngModel"
+          required
+        >
+        <div class="invalid-feedback">Informe o bairro.</div>
+      </div>
+
+      <div class="col-md-9">
+        <label for="cidade" class="form-label">Cidade *</label>
+        <input
+          id="cidade"
+          name="cidade"
+          class="form-control"
+          [class.is-invalid]="cidade.invalid && (cidade.touched || formulario.submitted)"
+          [(ngModel)]="cadastro.cidade"
+          #cidade="ngModel"
+          required
+        >
+        <div class="invalid-feedback">Informe a cidade.</div>
+      </div>
+
+      <div class="col-md-3">
+        <label for="uf" class="form-label">UF *</label>
+        <input
+          id="uf"
+          name="uf"
+          class="form-control text-uppercase"
+          [class.is-invalid]="uf.invalid && (uf.touched || formulario.submitted)"
+          [(ngModel)]="cadastro.uf"
+          #uf="ngModel"
+          required
+          minlength="2"
+          maxlength="2"
+        >
+        <div class="invalid-feedback">Informe a UF.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="form-actions d-flex justify-content-end">
+    <button
+      type="submit"
+      class="btn btn-primary px-4"
+      [disabled]="consultandoCep"
+    >
+      <i class="bi bi-check-lg me-2" aria-hidden="true"></i>
+      Salvar cadastro
+    </button>
+  </div>

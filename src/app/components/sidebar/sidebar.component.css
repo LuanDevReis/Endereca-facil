@@ -1,0 +1,16 @@
+.sidebar {
+  position: fixed; inset: 0 auto 0 0; z-index: 1030; width: var(--sidebar-width);
+  display: flex; flex-direction: column; padding: 1.5rem; color: #fff;
+  background: linear-gradient(180deg, #102a43 0%, #0b1f33 100%);
+}
+.brand { padding-bottom: 1.25rem; border-bottom: 1px solid rgba(255,255,255,.12); }
+.brand-mark { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; color: #0f2a43; background: #fff; font-size: 1.25rem; }
+.brand strong { font-size: 1.02rem; }.brand small { color: #b7c9d9; font-size: .75rem; }
+.nav a { display: flex; align-items: center; gap: .8rem; padding: .75rem .9rem; border-radius: 10px; color: #d8e5ef; text-decoration: none; font-weight: 600; }
+.nav a:hover, .nav a:focus-visible { color: #fff; background: rgba(255,255,255,.1); }
+.nav a.active { color: #fff; background: var(--brand-primary); box-shadow: 0 8px 20px rgba(13,110,253,.24); }
+.sidebar-note { padding: .9rem; border-radius: 10px; color: #b7c9d9; background: rgba(255,255,255,.06); font-size: .78rem; }
+@media (max-width: 991.98px) {
+  .sidebar { transform: translateX(-100%); transition: transform .2s ease; box-shadow: 16px 0 40px rgba(15,23,42,.2); }
+  .sidebar--open { transform: translateX(0); }
+}
